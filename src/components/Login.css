@@ -1,0 +1,101 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1f2937; /* Dark background color */
+  padding: 15px 30px; /* Adequate padding */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  height: 70px; /* Adjust height */
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px; /* Adjust logo height */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-family: 'Roboto', sans-serif; /* Professional font */
+  text-transform: uppercase;
+}
+
+.nav a {
+  font-size: 16px; /* Slightly larger font size */
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px; /* Adequate padding for links */
+  position: relative;
+  transition: color 0.3s, background-color 0.3s;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #f97316; /* Accent color */
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.nav a:hover {
+  color: #f97316; /* Accent color on hover */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle background change on hover */
+}
+
+.StyledContainer {
+  display: flex;
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ImageSection {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+}
+
+.FormSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+}
+
+.StyledPaper {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.StyledButton {
+  margin-top: 16px;
+  background-color: #2575fc;
+  color: #fff;
+}
+
+.StyledButton:hover {
+  background-color: #1e63d0;
+}

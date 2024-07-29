@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+  }
+  
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .logo {
+    height: 50px;
+    margin-right: auto;
+  }
+  
+  .navbar {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .user-greeting {
+    margin-left: auto;
+    font-weight: bold;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .welcome-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .welcome-section h1 {
+    font-size: 2.5em;
+    color: #003366;
+  }
+  
+  .dashboard-section,
+  .features-section,
+  .additional-info,
+  .latest-news,
+  .resource-center,
+  .customer-support,
+  .upcoming-events {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-card,
+  .feature-card,
+  .info-card,
+  .news-card,
+  .resource-card,
+  .support-card,
+  .event-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    transition: transform 0.3s ease;
+    margin: 10px;
+  }
+  
+  .dashboard-card:hover,
+  .feature-card:hover,
+  .info-card:hover,
+  .news-card:hover,
+  .resource-card:hover,
+  .support-card:hover,
+  .event-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .dashboard-card h2,
+  .feature-card h3,
+  .info-card h4,
+  .news-card h3,
+  .resource-card h3,
+  .support-card h3,
+  .event-card h3 {
+    color: #003366;
+  }
