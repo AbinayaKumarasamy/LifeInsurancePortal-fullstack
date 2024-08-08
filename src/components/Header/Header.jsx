@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../context/UserContext'; // Correct import
-import './NavBar.css';
-import logo from '../assets/logo.png';
+import { UserContext } from '../../context/UserContext'; 
+import './Header.css';
+import logo from '../../assets/logo.png';
 
-const NavBar = () => {
+const Header = () => {
   const { username } = useContext(UserContext);
 
   return (
@@ -15,13 +15,13 @@ const NavBar = () => {
       </div>
       
       <nav className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/services">Services</Link>
+        <Link to="/Display">Home</Link>
+        <Link to="/About">About Us</Link>
+        <Link to="/Service">Services</Link>
         {username && <div>Hi {username}</div>}
       </nav>
     </header>
   );
 };
 
-export default NavBar;
+export default Header;

@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import insurance from '../assets/insurance.jpg';
+import insurance from '../../assets/insurance.jpg';
 import './Login.css';
 
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -52,32 +52,49 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const Login = () => {
-  const { setUsername } = useContext(UserContext);
   const navigate = useNavigate(); // Hook for navigation
   const emailRef = useRef(null);
-  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
-  const [error, setError] = useState({ email: false, username: false, password: false });
+  const [error, setError] = useState({ email: false, password: false });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const emailValue = emailRef.current.value;
-    const usernameValue = usernameRef.current.value;
     const passwordValue = passwordRef.current.value;
 
-    if (emailValue && usernameValue && passwordValue) {
+    if (emailValue && passwordValue) {
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailValue)) {
         setError((prev) => ({ ...prev, email: true }));
       } else {
-        setError({ email: false, username: false, password: false });
-        setUsername(usernameValue);
-        console.log('Form Submitted Successfully');
-        navigate('/Display'); // Navigate to Home page
+        setError({ email: false, password: false });
+
+        const formData = {
+          email: emailValue,
+          password: passwordValue
+        };
+
+        try {
+          const response = await axios.post("http://localhost:8081/api/auth/login", formData);
+          console.log(response.data);
+          const { accessToken, role } = response.data;
+          localStorage.setItem("token", accessToken);
+          localStorage.setItem("role", role);
+
+          console.log("Token:", localStorage.getItem("token"));
+          alert("Login Success.!");
+          if (role === "ADMIN") {
+            navigate("/admin");
+          } else {
+            navigate("/Display");
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Invalid Credentials.!");
+        }
       }
     } else {
       setError({
         email: !emailValue,
-        username: !usernameValue,
         password: !passwordValue,
       });
     }
@@ -104,16 +121,6 @@ const Login = () => {
               margin="normal"
               error={error.email}
               helperText={error.email ? 'Please enter a valid email' : ''}
-            />
-            <TextField
-              inputRef={usernameRef}
-              id="username"
-              label="Username"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              error={error.username}
-              helperText={error.username ? 'Please enter your username' : ''}
             />
             <TextField
               inputRef={passwordRef}

@@ -1,4 +1,4 @@
-.header {
+header.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,11 +14,10 @@
   gap: 40px;
   font-weight: bold;
   color: white;
-
 }
 
 .logo {
-  height: 80px; /* Increased height */
+  height: 80px; 
   width: auto;
 }
 
